@@ -1,0 +1,13 @@
+{
+  "name": "the-last-mercy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Last Mercy, a lone-pirate sailing game for iPhone and iPad",
+  "dependencies": {
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3"
+  }
+}

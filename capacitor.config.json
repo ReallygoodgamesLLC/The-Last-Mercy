@@ -1,0 +1,11 @@
+{
+  "appId": "com.reallygoodgame.thelastmercy",
+  "appName": "The Last Mercy",
+  "webDir": "www",
+  "backgroundColor": "#0c2f38",
+  "ios": {
+    "contentInset": "never",
+    "scrollEnabled": false,
+    "backgroundColor": "#0c2f38"
+  }
+}
