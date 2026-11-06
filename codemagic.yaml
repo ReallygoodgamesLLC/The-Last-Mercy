@@ -54,8 +54,14 @@ workflows:
         script: xcode-project use-profiles
       - name: Increase the build number
         script: |
+          # Every upload needs a build number App Store Connect hasn't seen before.
           LATEST=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" 2>/dev/null || echo 0)
-          cd ios/App && agvtool new-version -all $((LATEST + 1))
+          case "$LATEST" in ''|*[!0-9]*) LATEST=0;; esac
+          NEXT=$((LATEST + 1))
+          # Codemagic's own build counter always goes up, so use it if it's higher.
+          if [ "${BUILD_NUMBER:-0}" -gt "$NEXT" ]; then NEXT=$BUILD_NUMBER; fi
+          echo "Latest TestFlight build: $LATEST. Using build number $NEXT."
+          cd ios/App && agvtool new-version -all "$NEXT"
       - name: Build the app
         script: |
           if [ -d ios/App/App.xcworkspace ]; then
